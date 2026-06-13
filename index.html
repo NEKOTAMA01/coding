@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Ekstrakurikuler Coding SRMA 24 KEDIRI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-secondary: #12121a;
+      --fg: #e8e8ed;
+      --muted: #6b6b7b;
+      --accent: #00d4aa;
+      --accent-dim: #00d4aa33;
+      --card: #16161f;
+      --border: #2a2a3a;
+      --code-green: #4ade80;
+      --code-blue: #60a5fa;
+      --code-purple: #c084fc;
+      --code-orange: #fb923c;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      overflow-x: hidden;
+    }
+
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    .grid-bg {
+      background-image: 
+        linear-gradient(rgba(0, 212, 170, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 212, 170, 0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      top: -100px;
+      right: -100px;
+      opacity: 0.15;
+    }
+
+    .orb-2 {
+      width: 300px;
+      height: 300px;
+      background: var(--code-purple);
+      bottom: 20%;
+      left: -50px;
+      opacity: 0.1;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1.1em;
+      background: var(--accent);
+      margin-left: 4px;
+      animation: blink 1s step-end infinite;
+      vertical-align: text-bottom;
+    }
+
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .code-rain {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .code-column {
+      position: absolute;
+      top: -100%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--accent);
+      opacity: 0.15;
+      writing-mode: vertical-rl;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall { to { transform: translateY(200vh); } }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .card-hover {
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 212, 170, 0.1);
+      border-color: var(--accent);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #00b894);
+      color: var(--bg);
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .btn-primary:hover::before { left: 100%; }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 2px solid var(--border);
+      color: var(--fg);
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .tab-btn {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      color: var(--muted);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--card);
+      color: var(--accent);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .tab-btn:hover:not(.active) { color: var(--fg); }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .tab-content.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .code-block {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+
+    .code-block .line-number {
+      color: var(--muted);
+      margin-right: 20px;
+      user-select: none;
+    }
+
+    .code-keyword { color: var(--code-purple); }
+    .code-function { color: var(--code-blue); }
+    .code-string { color: var(--code-green); }
+    .code-comment { color: var(--muted); font-style: italic; }
+    .code-variable { color: var(--code-orange); }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent), var(--code-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .filter-btn:hover:not(.active) {
+      border-color: var(--border);
+      color: var(--fg);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 30px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 20px var(--accent);
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 24px;
+      width: 2px;
+      height: calc(100% - 8px);
+      background: var(--border);
+    }
+
+    .timeline-item:last-child::after { display: none; }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Resource Cards */
+    .resource-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .resource-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 212, 170, 0.08);
+    }
+
+    .resource-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .resource-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Partner Logo */
+    .partner-logo {
+      filter: grayscale(100%);
+      opacity: 0.5;
+      transition: all 0.3s ease;
+    }
+
+    .partner-logo:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    /* Quick Links */
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .quick-link:hover {
+      border-color: var(--accent);
+      background: rgba(0, 212, 170, 0.05);
+    }
+
+    .quick-link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .code-column { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .stat-number { font-size: 2rem; }
+      .code-column { font-size: 10px; }
+    }
+  </style>
+</head>
+<body class="grid-bg">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#0a0a0f]/80 border-b border-[#2a2a3a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00d4aa] to-[#00b894] flex items-center justify-center">
+            <span class="font-mono font-bold text-[#0a0a0f] text-lg">&lt;/&gt;</span>
+          </div>
+          <span class="font-bold text-xl">EKSTRAKULIKULER CODING SRMA 24 KEDIRI</span>
+        </a>
+        
+        <div class="hidden md:flex items-center gap-8">
+          <a href="#about" class="text-[#6b6b7b] hover:text-[#e8e8ed] transition-colors">Tentang</a>
+          <a href="#programs" class="text-[#6b6b7b] hover:text-[#e8e8ed] transition-colors">Program</a>
+          <a href="#resources" class="text-[#6b6b7b] hover:text-[#e8e8ed] transition-colors">Resources</a>
+          <a href="#projects" class="text-[#6b6b7b] hover:text-[#e8e8ed] transition-colors">Proyek</a>
+          <a href="#join" class="btn-primary text-sm">Gabung Sekarang</a>
+        </div>
+
+        <button id="mobileMenuBtn" class="md:hidden p-2" aria-label="Toggle menu">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-[#12121a] border-t border-[#2a2a3a]">
+      <div class="px-4 py-4 space-y-3">
+        <a href="#about" class="block py-2 text-[#6b6b7b] hover:text-[#e8e8ed]">Tentang</a>
+        <a href="#programs" class="block py-2 text-[#6b6b7b] hover:text-[#e8e8ed]">Program</a>
+        <a href="#resources" class="block py-2 text-[#6b6b7b] hover:text-[#e8e8ed]">Resources</a>
+        <a href="#projects" class="block py-2 text-[#6b6b7b] hover:text-[#e8e8ed]">Proyek</a>
+        <a href="#join" class="btn-primary block text-center mt-4">Gabung Sekarang</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="code-rain" id="codeRain"></div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <div class="reveal inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#16161f] border border-[#2a2a3a] mb-6">
+            <span class="w-2 h-2 rounded-full bg-[#00d4aa] animate-pulse"></span>
+            <span class="text-sm text-[#6b6b7b]">Pendaftaran Anggota Baru Dibuka</span>
+          </div>
+          
+          <h1 class="reveal reveal-delay-1 text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Bentuk Masa Depan
+            <span class="block text-[#00d4aa]">dengan Kode</span>
+          </h1>
+          
+          <p class="reveal reveal-delay-2 text-lg text-[#6b6b7b] mb-8 max-w-xl">
+            Ekstrakurikuler coding SRMA 24 KEDIRI. Belajar pemrograman web, mobile, dan AI bersama mentor berpengalaman. Dari pemula hingga siap berkarir di industri teknologi.
+          </p>
+          
+          <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#join" class="btn-primary text-center">Mulai Perjalananmu</a>
+            <a href="#programs" class="btn-secondary text-center">Lihat Program</a>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-4 hidden lg:block">
+          <div class="code-block font-mono text-sm">
+            <div class="flex items-center gap-2 mb-4 pb-4 border-b border-[#2a2a3a]">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27ca40]"></span>
+              <span class="ml-4 text-[#6b6b7b]">welcome.py</span>
+            </div>
+            <div id="typingCode"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-12 border-t border-[#2a2a3a]">
+        <div class="text-center">
+          <div class="stat-number" data-target="150">0</div>
+          <p class="text-[#6b6b7b] mt-1">Anggota Aktif</p>
+        </div>
+        <div class="text-center">
+          <div class="stat-number" data-target="45">0</div>
+          <p class="text-[#6b6b7b] mt-1">Proyek Selesai</p>
+        </div>
+        <div class="text-center">
+          <div class="stat-number" data-target="12">0</div>
+          <p class="text-[#6b6b7b] mt-1">Mentor Expert</p>
+        </div>
+        <div class="text-center">
+          <div class="stat-number" data-target="8">0</div>
+          <p class="text-[#6b6b7b] mt-1">Penghargaan</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <i data-lucide="chevron-down" class="w-6 h-6 text-[#6b6b7b]"></i>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="reveal text-[#00d4aa] font-mono text-sm tracking-wider">TENTANG KAMI</span>
+          <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-bold mt-4 mb-6">Lebih dari Sekadar Belajar Kode</h2>
+          <p class="reveal reveal-delay-2 text-[#6b6b7b] mb-6">
+            EKSTRAKULIKULER CODING SRMA 24 KEDIRI didirikan pada 2026 dengan visi mencetak developer muda berbakat yang siap bersaing di era digital. Kami percaya setiap siswa memiliki potensi untuk menciptakan teknologi yang mengubah dunia.
+          </p>
+          <p class="reveal reveal-delay-2 text-[#6b6b7b] mb-8">
+            Dengan kurikulum yang selalu diperbarui mengikuti industri, fasilitas laboratorium modern, dan jaringan alumni yang kuat, kami memastikan setiap anggota mendapatkan pendidikan terbaik.
+          </p>
+          
+          <div class="reveal reveal-delay-3 grid grid-cols-2 gap-6">
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-lg bg-[#00d4aa]/10 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="rocket" class="w-5 h-5 text-[#00d4aa]"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Project-Based</h4>
+                <p class="text-sm text-[#6b6b7b]">Belajar lewat proyek nyata</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-lg bg-[#60a5fa]/10 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="users" class="w-5 h-5 text-[#60a5fa]"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Collaborative</h4>
+                <p class="text-sm text-[#6b6b7b]">Kerja tim dan networking</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-lg bg-[#c084fc]/10 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="award" class="w-5 h-5 text-[#c084fc]"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Certified</h4>
+                <p class="text-sm text-[#6b6b7b]">Sertifikasi industri</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-lg bg-[#fb923c]/10 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="briefcase" class="w-5 h-5 text-[#fb923c]"></i>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Career Ready</h4>
+                <p class="text-sm text-[#6b6b7b]">Siap kerja dan magang</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2 relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-[#00d4aa]/20 to-[#60a5fa]/20 rounded-2xl blur-2xl opacity-50"></div>
+          <div class="relative bg-[#16161f] rounded-2xl p-8 border border-[#2a2a3a]">
+            <div class="flex items-center gap-4 mb-6">
+              <img src="https://tse1.mm.bing.net/th/id/OIP.gNl3kimcAg3NjrjUuak56AHaHX?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" alt="NEKO TAMA" class="w-16 h-16 rounded-xl object-cover">
+              <div>
+                <h4 class="font-semibold">NEKO TAMA</h4>
+                <p class="text-sm text-[#6b6b7b]">ADMIN</p>
+              </div>
+            </div>
+            <blockquote class="text-lg italic text-[#a0a0b0] mb-4">
+              "Kami tidak hanya mengajarkan cara menulis kode, tapi juga cara berpikir seperti developer profesional. Problem-solving, teamwork, dan continuous learning adalah nilai utama kami."
+            </blockquote>
+            <div class="flex items-center gap-1 text-[#00d4aa]">
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section id="programs" class="py-24 bg-[#12121a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="reveal text-[#00d4aa] font-mono text-sm tracking-wider">PROGRAM KAMI</span>
+        <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-bold mt-4">Pilih Jalur Belajarmu</h2>
+        <p class="reveal reveal-delay-2 text-[#6b6b7b] mt-4 max-w-2xl mx-auto">
+          Kurikulum terstruktur dari dasar hingga mahir, dengan jalur spesialisasi yang sesuai minatmu
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-2 flex flex-wrap justify-center gap-2 mb-12">
+        <button class="tab-btn active" data-tab="web">Web Development</button>
+        <button class="tab-btn" data-tab="mobile">Mobile App</button>
+        <button class="tab-btn" data-tab="ai">AI & Data</button>
+        <button class="tab-btn" data-tab="game">Game Dev</button>
+      </div>
+
+      <div id="tab-web" class="tab-content active">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="reveal bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#fb923c] to-[#f97316] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white">HTML</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">HTML & CSS Mastery</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Fondasi web development. Pelajari struktur semantik, responsive design, dan animasi CSS modern.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>8 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Pemula</span>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-1 bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#facc15] to-[#eab308] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-black">JS</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">JavaScript Modern</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">ES6+, async programming, DOM manipulation, dan membangun aplikasi web interaktif.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>12 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Menengah</span>
+            </div>
+          </div>
+
+          <div class="reveal reveal-delay-2 bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#60a5fa] to-[#3b82f6] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">REACT</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">React & Next.js</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Framework modern untuk membangun aplikasi web skala besar dengan performa tinggi.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>16 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Lanjutan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-mobile" class="tab-content">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#38bdf8] to-[#0ea5e9] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">FLUTTER</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Flutter Fundamentals</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Cross-platform development dengan Dart. Satu codebase untuk iOS dan Android.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>12 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Menengah</span>
+            </div>
+          </div>
+
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#a78bfa] to-[#8b5cf6] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">KOTLIN</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Android Native</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Pengembangan aplikasi Android native dengan Kotlin dan Jetpack Compose.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>16 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Lanjutan</span>
+            </div>
+          </div>
+
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4ade80] to-[#22c55e] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">RN</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">React Native</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Mobile development dengan JavaScript dan React untuk aplikasi cross-platform.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>14 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Menengah</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-ai" class="tab-content">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#fb923c] to-[#ea580c] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">PY</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Python for Data</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Dasar pemrograman Python, pandas, numpy, dan visualisasi data.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>10 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Pemula</span>
+            </div>
+          </div>
+
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#f472b6] to-[#ec4899] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">ML</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Machine Learning</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Supervised & unsupervised learning, scikit-learn, dan model deployment.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>16 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Lanjutan</span>
+            </div>
+          </div>
+
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#c084fc] to-[#a855f7] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">AI</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Deep Learning</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Neural networks, TensorFlow, computer vision, dan NLP basics.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>20 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Expert</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="tab-game" class="tab-content">
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4ade80] to-[#16a34a] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">UNITY</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Unity 2D</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Game development 2D dengan Unity dan C#. Dari prototype hingga publikasi.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>14 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Menengah</span>
+            </div>
+          </div>
+
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#f87171] to-[#dc2626] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">GODOT</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Godot Engine</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">Open-source game engine dengan GDScript untuk 2D dan 3D games.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>12 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Pemula</span>
+            </div>
+          </div>
+
+          <div class="bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover">
+            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#60a5fa] to-[#2563eb] flex items-center justify-center mb-4">
+              <span class="font-mono font-bold text-white text-xs">3D</span>
+            </div>
+            <h3 class="font-semibold text-lg mb-2">Unity 3D Advanced</h3>
+            <p class="text-[#6b6b7b] text-sm mb-4">3D modeling integration, physics, AI musuh, dan multiplayer basics.</p>
+            <div class="flex items-center gap-2 text-sm text-[#6b6b7b]">
+              <i data-lucide="clock" class="w-4 h-4"></i>
+              <span>20 Minggu</span>
+              <span class="mx-2">•</span>
+              <span>Lanjutan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section (NEW) -->
+  <section id="resources" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <span class="reveal text-[#00d4aa] font-mono text-sm tracking-wider">LEARNING RESOURCES</span>
+        <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-bold mt-4">Sumber Belajar Terpercaya</h2>
+        <p class="reveal reveal-delay-2 text-[#6b6b7b] mt-4 max-w-2xl mx-auto">
+          Kumpulan platform dan website terbaik untuk memperdalam skill coding. Semua sudah diverifikasi oleh tim mentor kami.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="reveal reveal-delay-2 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <a href="https://developer.mozilla.org/" target="_blank" rel="noopener" class="quick-link group">
+          <div class="quick-link-icon bg-[#f97316]/10">
+            <svg class="w-6 h-6 text-[#f97316]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M23.5 11.957c0 .032.005.055.005.055v.005l-.005.005v.002L12 24 .5 12.024l-.005-.006.005-.007V12a.117.117 0 01.005-.017l.005-.005.002-.007 11.48-11.96.005-.005.003-.002.007-.004.005-.005.012-.003.008-.004.012-.002.008-.003h.012l.012-.002.017.002h.012l.008.003.012.002.008.004.012.003.005.005.007.004.003.002.005.005 11.48 11.96.002.007.005.005.005.017v.003z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-semibold group-hover:text-[#00d4aa] transition-colors">MDN Web Docs</h4>
+            <p class="text-xs text-[#6b6b7b]">Dokumentasi web terlengkap</p>
+          </div>
+          <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+        </a>
+
+        <a href="https://stackoverflow.com/" target="_blank" rel="noopener" class="quick-link group">
+          <div class="quick-link-icon bg-[#f97316]/10">
+            <svg class="w-6 h-6 text-[#f97316]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.986 21.865v-6.404h2.134V24H1.844v-8.539h2.13v6.404h15.012zM6.111 19.731H16.85v-2.137H6.111v2.137zm.259-4.852l10.48 2.189.451-2.07-10.478-2.187-.453 2.068zm1.359-5.056l9.705 4.53.903-1.95-9.706-4.53-.902 1.95zm2.715-4.785l8.217 6.855 1.359-1.62-8.216-6.853-1.36 1.617zM15.242 0l-1.724 1.253 6.363 8.516 1.724-1.253L15.242 0z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-semibold group-hover:text-[#00d4aa] transition-colors">Stack Overflow</h4>
+            <p class="text-xs text-[#6b6b7b]">Komunitas Q&A terbesar</p>
+          </div>
+          <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+        </a>
+
+        <a href="https://github.com/NEKOTAMA01" target="_blank" rel="noopener" class="quick-link group">
+          <div class="quick-link-icon bg-[#a0a0b0]/10">
+            <i data-lucide="github" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h4 class="font-semibold group-hover:text-[#00d4aa] transition-colors">GitHub</h4>
+            <p class="text-xs text-[#6b6b7b]">Platform kolaborasi kode</p>
+          </div>
+          <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+        </a>
+
+        <a href="https://codepen.io/" target="_blank" rel="noopener" class="quick-link group">
+          <div class="quick-link-icon bg-[#4ade80]/10">
+            <svg class="w-6 h-6 text-[#4ade80]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.144 13.067v-2.134L16.55 12zm1.715 1.135a.607.607 0 01-.207.206l-7.5 5a.61.61 0 01-.303.092.61.61 0 01-.303-.092l-7.5-5a.607.607 0 01-.207-.206.608.608 0 01-.1-.337V9.865a.608.608 0 01.1-.337.607.607 0 01.207-.206l7.5-5a.607.607 0 01.303-.092.607.607 0 01.303.092l7.5 5a.607.607 0 01.207.206.608.608 0 01.1.337v3.865a.608.608 0 01-.1.337zM12 10.865L9.895 12 12 13.135 14.105 12zm-1.067-1.798L8.495 7.87l-3.928 2.618 2.44 1.627zm4.134 0l3.06 2.247 2.44-1.627-3.928-2.618zM12 14.865l-2.105 1.402 2.105 1.403 2.105-1.403z"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-semibold group-hover:text-[#00d4aa] transition-colors">CodePen</h4>
+            <p class="text-xs text-[#6b6b7b]">Playground frontend</p>
+          </div>
+          <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+        </a>
+      </div>
+
+      <!-- Learning Platforms -->
+      <div class="mb-16">
+        <h3 class="reveal text-xl font-semibold mb-6 flex items-center gap-2">
+          <i data-lucide="graduation-cap" class="w-5 h-5 text-[#00d4aa]"></i>
+          Platform Pembelajaran
+        </h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="https://www.freecodecamp.org/" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-1 group">
+            <div class="resource-icon bg-gradient-to-br from-[#303030] to-[#1a1a1a]">
+              <svg class="w-7 h-7 text-[#006400]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.885 3.906a.621.621 0 00-.354.12L12 9.388l-7.531-5.362a.621.621 0 00-.354-.12.625.625 0 00-.28 1.18l7.835 5.582a.625.625 0 00.66 0l7.835-5.582a.625.625 0 00-.28-1.18zm0 6.875a.621.621 0 00-.354.12L12 16.263l-7.531-5.362a.621.621 0 00-.354-.12.625.625 0 00-.28 1.18l7.835 5.582a.625.625 0 00.66 0l7.835-5.582a.625.625 0 00-.28-1.18z"/>
+              </svg>
+            </div>
+            <span class="resource-tag bg-[#006400]/20 text-[#4ade80]">Gratis</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">freeCodeCamp</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Kursus interaktif gratis dengan sertifikasi untuk web development, JavaScript, Python, dan lainnya.</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Kunjungi website</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="https://www.codecademy.com/" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-2 group">
+            <div class="resource-icon bg-gradient-to-br from-[#1f4068] to-[#162447]">
+              <span class="text-[#00d4aa] font-bold text-xl">C</span>
+            </div>
+            <span class="resource-tag bg-[#60a5fa]/20 text-[#60a5fa]">Premium</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">Codecademy</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Platform belajar coding interaktif dengan jalur karir terstruktur untuk berbagai bahasa pemrograman.</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Kunjungi website</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="https://www.coursera.org/" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-3 group">
+            <div class="resource-icon bg-gradient-to-br from-[#0056d2] to-[#003d99]">
+              <span class="text-white font-bold text-xl">C</span>
+            </div>
+            <span class="resource-tag bg-[#c084fc]/20 text-[#c084fc]">Sertifikasi</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">Coursera</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Kursus dari universitas top dunia seperti Stanford, MIT, dan perusahaan teknologi seperti Google dan IBM.</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Kunjungi website</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="https://www.udemy.com/" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-1 group">
+            <div class="resource-icon bg-gradient-to-br from[#a435f0] to-[#8710d8]">
+              <span class="text-white font-bold text-xl">U</span>
+            </div>
+            <span class="resource-tag bg-[#fb923c]/20 text-[#fb923c]">Berbayar</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">Udemy</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Marketplace kursus video dengan ribuan topik programming. Sering ada diskon hingga 90%.</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Kunjungi website</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="https://youtu.be/AHLt6eXyVQk?si=jtuxXixYm-sLlRTk" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-2 group">
+            <div class="resource-icon bg-gradient-to-br from-[#ff0000] to-[#cc0000]">
+              <span data-lucide="youtube" class="w-7 h-7 text-white">  Y</span>
+            </div>
+            <span class="resource-tag bg-[#f87171]/20 text-[#f87171]">Video</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">YouTube Education</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Channel seperti Traversy Media, The Net Ninja, dan Web Dev Simplified menyediakan tutorial berkualitas gratis.</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Kunjungi website</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="https://www.sololearn.com/" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-3 group">
+            <div class="resource-icon bg-gradient-to-br from-[#1abc9c] to-[#16a085]">
+              <span class="text-white font-bold text-xl">S</span>
+            </div>
+            <span class="resource-tag bg-[#006400]/20 text-[#4ade80]">Mobile</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">SoloLearn</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Aplikasi belajar coding mobile-friendly dengan pendekatan gamifikasi dan komunitas aktif.</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Kunjungi website</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Documentation & References -->
+      <div class="mb-16">
+        <h3 class="reveal text-xl font-semibold mb-6 flex items-center gap-2">
+          <i data-lucide="book-open" class="w-5 h-5 text-[#60a5fa]"></i>
+          Dokumentasi & Referensi
+        </h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="https://react.dev/" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#61dafb]/10">
+              <span class="text-[#61dafb] font-bold">R</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">React Docs</h4>
+              <p class="text-xs text-[#6b6b7b]">Dokumentasi resmi React</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://nextjs.org/docs" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#ffffff]/10">
+              <span class="font-bold text-white">N</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Next.js Docs</h4>
+              <p class="text-xs text-[#6b6b7b]">Framework React fullstack</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://tailwindcss.com/docs" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#38bdf8]/10">
+              <span class="text-[#38bdf8] font-bold">T</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Tailwind CSS</h4>
+              <p class="text-xs text-[#6b6b7b]">Utility-first CSS framework</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://nodejs.org/docs" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#4ade80]/10">
+              <span class="text-[#4ade80] font-bold">JS</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Node.js Docs</h4>
+              <p class="text-xs text-[#6b6b7b]">JavaScript runtime</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://docs.python.org/" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#fb923c]/10">
+              <span class="text-[#fb923c] font-bold">Py</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Python Docs</h4>
+              <p class="text-xs text-[#6b6b7b]">Dokumentasi resmi Python</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://flutter.dev/docs" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#38bdf8]/10">
+              <span class="text-[#38bdf8] font-bold">F</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Flutter Docs</h4>
+              <p class="text-xs text-[#6b6b7b]">Mobile cross-platform</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://docs.unity3d.com/" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#a0a0b0]/10">
+              <span class="font-bold">U</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Unity Docs</h4>
+              <p class="text-xs text-[#6b6b7b]">Game development</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://www.tensorflow.org/learn" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#fb923c]/10">
+              <span class="text-[#fb923c] font-bold">TF</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">TensorFlow</h4>
+              <p class="text-xs text-[#6b6b7b]">Machine learning framework</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Coding Challenge Platforms -->
+      <div class="mb-16">
+        <h3 class="reveal text-xl font-semibold mb-6 flex items-center gap-2">
+          <i data-lucide="trophy" class="w-5 h-5 text-[#facc15]"></i>
+          Platform Latihan & Kompetisi
+        </h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <a href="https://leetcode.com/" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-1 group">
+            <div class="resource-icon bg-gradient-to-br from-[#ffa116] to-[#ff8c00]">
+              <span class="text-white font-bold text-xl">LC</span>
+            </div>
+            <span class="resource-tag bg-[#facc15]/20 text-[#facc15]">Populer</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">LeetCode</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Platform latihan algoritma dan struktur data favorit untuk persiapan wawancara kerja di perusahaan teknologi besar.</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Mulai latihan</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="https://www.hackerrank.com/" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-2 group">
+            <div class="resource-icon bg-gradient-to-br from-[#00ea64] to-[#00c853]">
+              <span class="text-white font-bold text-xl">HR</span>
+            </div>
+            <span class="resource-tag bg-[#006400]/20 text-[#4ade80]">Sertifikasi</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">HackerRank</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Platform dengan challenge coding, kompetisi, dan sertifikasi skill yang diakui industri.</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Mulai latihan</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+
+          <a href="https://www.codewars.com/" target="_blank" rel="noopener" class="resource-card reveal reveal-delay-3 group">
+            <div class="resource-icon bg-gradient-to-br from#b1361e to-[#8b0000]">
+              <span class="text-white font-bold text-xl">CW</span>
+            </div>
+            <span class="resource-tag bg-[#f87171]/20 text-[#f87171]">Gamified</span>
+            <h4 class="font-semibold text-lg mt-3 mb-2 group-hover:text-[#00d4aa] transition-colors">Codewars</h4>
+            <p class="text-sm text-[#6b6b7b] mb-4 flex-grow">Latihan coding dengan sistem ranking seperti bela diri. Selesaikan kata untuk naik rank!</p>
+            <div class="flex items-center gap-2 text-sm text-[#00d4aa]">
+              <span>Mulai latihan</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Indonesian Resources -->
+      <div>
+        <h3 class="reveal text-xl font-semibold mb-6 flex items-center gap-2">
+          <i data-lucide="flag" class="w-5 h-5 text-[#f87171]"></i>
+          Sumber Belajar Bahasa Indonesia
+        </h3>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <a href="https://www.petanikode.com/" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#00d4aa]/10">
+              <span class="text-[#00d4aa] font-bold">PK</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Petani Kode</h4>
+              <p class="text-xs text-[#6b6b7b]">Tutorial lengkap bahasa Indonesia</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://www.belajarpython.com/" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#fb923c]/10">
+              <span class="text-[#fb923c] font-bold">Py</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Belajar Python</h4>
+              <p class="text-xs text-[#6b6b7b]">Tutorial Python dalam bahasa Indonesia</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://www.malasngoding.com/" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#60a5fa]/10">
+              <span class="text-[#60a5fa] font-bold">MN</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Malas Ngoding</h4>
+              <p class="text-xs text-[#6b6b7b]">Tutorial web development Indonesia</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+
+          <a href="https://codepolitan.com/" target="_blank" rel="noopener" class="quick-link group">
+            <div class="quick-link-icon bg-[#c084fc]/10">
+              <span class="text-[#c084fc] font-bold">CP</span>
+            </div>
+            <div>
+              <h4 class="font-semibold text-sm group-hover:text-[#00d4aa] transition-colors">Codepolitan</h4>
+              <p class="text-xs text-[#6b6b7b]">Platform belajar coding Indonesia</p>
+            </div>
+            <i data-lucide="external-link" class="w-4 h-4 text-[#6b6b7b] ml-auto group-hover:text-[#00d4aa]"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24 bg-[#12121a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="reveal text-[#00d4aa] font-mono text-sm tracking-wider">PROYEK SISWA</span>
+        <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-bold mt-4">Karya Anggota Kami</h2>
+        <p class="reveal reveal-delay-2 text-[#6b6b7b] mt-4 max-w-2xl mx-auto">
+          Hasil karya nyata dari anggota CodeLab yang telah dipublikasikan dan digunakan
+        </p>
+      </div>
+
+      <div class="reveal reveal-delay-2 flex flex-wrap justify-center gap-2 mb-10">
+        <button class="filter-btn active" data-filter="all">Semua</button>
+        <button class="filter-btn" data-filter="web">Web App</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+        <button class="filter-btn" data-filter="game">Game</button>
+        <button class="filter-btn" data-filter="ai">AI</button>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Schedule Section -->
+  <section id="schedule" class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-16">
+        <div>
+          <span class="reveal text-[#00d4aa] font-mono text-sm tracking-wider">JADWAL KEGIATAN</span>
+          <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-bold mt-4 mb-6">Rutin & Terstruktur</h2>
+          <p class="reveal reveal-delay-2 text-[#6b6b7b] mb-8">
+            Jadwal yang fleksibel namun terstruktur untuk memastikan progress belajar optimal. Setiap pertemuan terdiri dari teori, praktik, dan code review.
+          </p>
+
+          <div class="reveal reveal-delay-3 space-y-6">
+            <div class="timeline-item pb-6">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h4 class="font-semibold">Senin - Web Development</h4>
+                  <p class="text-sm text-[#6b6b7b] mt-1">HTML, CSS, JavaScript, React</p>
+                </div>
+                <span class="text-[#00d4aa] font-mono text-sm">15:00 - 17:00</span>
+              </div>
+            </div>
+
+            <div class="timeline-item pb-6">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h4 class="font-semibold">Rabu - Mobile & Game Dev</h4>
+                  <p class="text-sm text-[#6b6b7b] mt-1">Flutter, Unity, Godot</p>
+                </div>
+                <span class="text-[#00d4aa] font-mono text-sm">15:00 - 17:00</span>
+              </div>
+            </div>
+
+            <div class="timeline-item pb-6">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h4 class="font-semibold">Jumat - AI & Data Science</h4>
+                  <p class="text-sm text-[#6b6b7b] mt-1">Python, Machine Learning</p>
+                </div>
+                <span class="text-[#00d4aa] font-mono text-sm">15:00 - 17:00</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h4 class="font-semibold">Sabtu - Hackathon & Workshop</h4>
+                  <p class="text-sm text-[#6b6b7b] mt-1">Project day, guest speaker, competition</p>
+                </div>
+                <span class="text-[#00d4aa] font-mono text-sm">09:00 - 12:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2">
+          <div class="bg-[#16161f] rounded-2xl border border-[#2a2a3a] overflow-hidden">
+            <div class="p-6 border-b border-[#2a2a3a]">
+              <h3 class="font-semibold text-lg">Lokasi & Fasilitas</h3>
+            </div>
+            <div class="aspect-video bg-[#0a0a0f] relative">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=450&fit=crop" alt="Computer Lab" class="w-full h-full object-cover opacity-70">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#16161f] to-transparent"></div>
+              <div class="absolute bottom-4 left-4">
+                <p class="font-semibold">Lab Komputer 3, Lantai 2</p>
+                <p class="text-sm text-[#6b6b7b]">Gedung Teknologi SRMA 24 KEDIRI</p>
+              </div>
+            </div>
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-4">
+                <div class="flex items-center gap-2 text-sm">
+                  <i data-lucide="monitor" class="w-4 h-4 text-[#00d4aa]"></i>
+                  <span>30 Unit PC</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                  <i data-lucide="wifi" class="w-4 h-4 text-[#00d4aa]"></i>
+                  <span>Fiber 100Mbps</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                  <i data-lucide="projector" class="w-4 h-4 text-[#00d4aa]"></i>
+                  <span>Proyektor 4K</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm">
+                  <i data-lucide="coffee" class="w-4 h-4 text-[#00d4aa]"></i>
+                  <span>Pantry Area</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="py-24 bg-[#12121a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="reveal text-[#00d4aa] font-mono text-sm tracking-wider">TIM MENTOR</span>
+        <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-bold mt-4">Belajar dari Praktisi</h2>
+        <p class="reveal reveal-delay-2 text-[#6b6b7b] mt-4 max-w-2xl mx-auto">
+          Mentor berpengalaman dari industri teknologi terkemuka
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6" id="teamGrid"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="reveal text-[#00d4aa] font-mono text-sm tracking-wider">TESTIMONI</span>
+        <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl font-bold mt-4">Kata Mereka</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="reveal bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a]">
+          <div class="flex items-center gap-1 text-[#00d4aa] mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          <p class="text-[#a0a0b0] mb-6">"Berkat CodeLab, sekarang saya sudah bekerja sebagai frontend developer di startup. Ilmu yang diajarkan benar-benar relevan dengan kebutuhan industri."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.djRVDjohXS2o3GWbF0smiQHaHF?w=203&h=194&c=7&r=0&o=5&pid=1.7" alt="Alumni" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="font-semibold text-sm">waluyo</p>
+              <p class="text-xs text-[#6b6b7b]">Alumni 2022 - Frontend Dev at TechCorp</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-1 bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a]">
+          <div class="flex items-center gap-1 text-[#00d4aa] mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          <p class="text-[#a0a0b0] mb-6">"Awalnya sama sekali tidak bisa coding. Setelah 6 bulan di CodeLab, saya berhasil membuat aplikasi mobile pertama saya dan upload ke Play Store!"</p>
+          <div class="flex items-center gap-3">
+            <img src="https://tse2.mm.bing.net/th/id/OIP._1lDWiUKBJhtECgPojb5uAAAAA?w=183&h=185&c=7&r=0&o=5&pid=1.7" alt="Alumni" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="font-semibold text-sm">mlayuo</p>
+              <p class="text-xs text-[#6b6b7b]">Angkatan 2023 - Mobile Developer</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal reveal-delay-2 bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a]">
+          <div class="flex items-center gap-1 text-[#00d4aa] mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          <p class="text-[#a0a0b0] mb-6">"Komunitas yang supportive dan mentor yang sangat helpful. Banyak project kolaborasi yang bikin portfolio saya jadi kaya dan menarik."</p>
+          <div class="flex items-center gap-3">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.eH91pJgx8WUdQ5Wlyv5fugHaHk?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Alumni" class="w-10 h-10 rounded-full object-cover">
+            <div>
+              <p class="font-semibold text-sm">mulio</p>
+              <p class="text-xs text-[#6b6b7b]">Angkatan 2023 - Full Stack Dev</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="join" class="py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#00d4aa]/10 to-[#60a5fa]/10"></div>
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#00d4aa] rounded-full filter blur-[200px] opacity-10"></div>
+    
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="reveal text-[#00d4aa] font-mono text-sm tracking-wider">GABUNG SEKARANG</span>
+      <h2 class="reveal reveal-delay-1 text-3xl sm:text-4xl lg:text-5xl font-bold mt-4 mb-6">Siap Memulai Perjalananmu?</h2>
+      <p class="reveal reveal-delay-2 text-[#6b6b7b] text-lg mb-8 max-w-2xl mx-auto">
+        Pendaftaran anggota baru dibuka hingga 30 Januari 2025. Kuota terbatas untuk 50 anggota baru. Daftar sekarang dan raih masa depanmu di industri teknologi.
+      </p>
+
+      <div class="reveal reveal-delay-3 bg-[#16161f] rounded-2xl p-8 border border-[#2a2a3a] max-w-xl mx-auto mb-8">
+        <form id="joinForm" class="space-y-4">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <input type="text" placeholder="Nama Lengkap" required class="w-full px-4 py-3 bg-[#0a0a0f] border border-[#2a2a3a] rounded-lg focus:border-[#00d4aa] focus:outline-none transition-colors">
+            <input type="text" placeholder="Kelas" required class="w-full px-4 py-3 bg-[#0a0a0f] border border-[#2a2a3a] rounded-lg focus:border-[#00d4aa] focus:outline-none transition-colors">
+          </div>
+          <input type="email" placeholder="Email" required class="w-full px-4 py-3 bg-[#0a0a0f] border border-[#2a2a3a] rounded-lg focus:border-[#00d4aa] focus:outline-none transition-colors">
+          <select required class="w-full px-4 py-3 bg-[#0a0a0f] border border-[#2a2a3a] rounded-lg focus:border-[#00d4aa] focus:outline-none transition-colors text-[#6b6b7b]">
+            <option value="">Pilih Jalur Minat</option>
+            <option value="web">Web Development</option>
+            <option value="mobile">Mobile App Development</option>
+            <option value="ai">AI & Data Science</option>
+            <option value="game">Game Development</option>
+          </select>
+          <textarea placeholder="Ceritakan motivasimu bergabung (opsional)" rows="3" class="w-full px-4 py-3 bg-[#0a0a0f] border border-[#2a2a3a] rounded-lg focus:border-[#00d4aa] focus:outline-none transition-colors resize-none"></textarea>
+          <button type="submit" class="btn-primary w-full">Daftar Sekarang</button>
+        </form>
+      </div>
+
+      <p class="reveal reveal-delay-4 text-sm text-[#6b6b7b]">
+        Masih bingung? <a href="#" class="text-[#00d4aa] hover:underline">Hubungi admin</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-[#2a2a3a]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00d4aa] to-[#00b894] flex items-center justify-center">
+              <span class="font-mono font-bold text-[#0a0a0f] text-lg">&lt;/&gt;</span>
+            </div>
+            <span class="font-bold text-xl">CodeLab</span>
+          </div>
+          <p class="text-sm text-[#6b6b7b] mb-4">Ekstrakurikuler Coding SRMA 24 KEDIRI. Mencetak developer muda berbakat untuk masa depan Indonesia.</p>
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 rounded-lg bg-[#16161f] border border-[#2a2a3a] flex items-center justify-center hover:border-[#00d4aa] transition-colors" aria-label="Instagram">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-[#16161f] border border-[#2a2a3a] flex items-center justify-center hover:border-[#00d4aa] transition-colors" aria-label="GitHub">
+              <i data-lucide="github" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-[#16161f] border border-[#2a2a3a] flex items-center justify-center hover:border-[#00d4aa] transition-colors" aria-label="YouTube">
+              <i data-lucide="youtube" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-9 h-9 rounded-lg bg-[#16161f] border border-[#2a2a3a] flex items-center justify-center hover:border-[#00d4aa] transition-colors" aria-label="Discord">
+              <i data-lucide="message-circle" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Program</h4>
+          <ul class="space-y-2 text-sm text-[#6b6b7b]">
+            <li><a href="#" class="hover:text-[#00d4aa] transition-colors">Web Development</a></li>
+            <li><a href="#" class="hover:text-[#00d4aa] transition-colors">Mobile App</a></li>
+            <li><a href="#" class="hover:text-[#00d4aa] transition-colors">AI & Data Science</a></li>
+            <li><a href="#" class="hover:text-[#00d4aa] transition-colors">Game Development</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Resources</h4>
+          <ul class="space-y-2 text-sm text-[#6b6b7b]">
+            <li><a href="https://developer.mozilla.org/" target="_blank" class="hover:text-[#00d4aa] transition-colors">MDN Web Docs</a></li>
+            <li><a href="https://stackoverflow.com/" target="_blank" class="hover:text-[#00d4aa] transition-colors">Stack Overflow</a></li>
+            <li><a href="https://github.com/NEKOTAMA01/" target="_blank" class="hover:text-[#00d4aa] transition-colors">GitHub</a></li>
+            <li><a href="https://www.freecodecamp.org/" target="_blank" class="hover:text-[#00d4aa] transition-colors">freeCodeCamp</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Kontak</h4>
+          <ul class="space-y-3 text-sm text-[#6b6b7b]">
+            <li class="flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-[#00d4aa]"></i>
+              <span>Jl. anomali No. 123, pluto</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-[#00d4aa]"></i>
+              <a href="mailto:codelab@SRMA24KEDIRI.sch.id" class="hover:text-[#00d4aa] transition-colors">codelab@SRMA24KEDIRI.sch.id</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <i data-lucide="phone" class="w-4 h-4 text-[#00d4aa]"></i>
+              <span>+62 857-3075-0616</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-[#2a2a3a] flex flex-col sm:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-[#6b6b7b]">2025 CodeLab SRMA 24 KEDIRI. All rights reserved.</p>
+        <p class="text-sm text-[#6b6b7b]">Made with <span class="text-[#00d4aa]">code</span> by CodeLab Students</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Data
+    const projects = [
+      { id: 1, title: 'E-Learning Platform', desc: 'Platform pembelajaran online dengan fitur video call dan quiz interaktif', category: 'web', author: 'Tim Alpha', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=250&fit=crop', tech: ['React', 'Node.js', 'MongoDB'] },
+      { id: 2, title: 'Health Tracker App', desc: 'Aplikasi mobile untuk tracking kesehatan dan olahraga harian', category: 'mobile', author: 'Rina & Co', image: 'https://dailyai.com/wp-content/uploads/2025/02/DALL%C2%B7E-2025-02-15-15.03.19-A-futuristic-AI-powered-health-app-interface-with-a-sleek-glowing-design.-A-modern-smartphone-displays-abstract-minimalistic-health-data-visuals-wit.webp', tech: ['Flutter', 'Firebase'] },
+      { id: 3, title: 'Eco Adventure Game', desc: 'Game edukasi tentang pelestarian lingkungan untuk anak-anak', category: 'game', author: 'Game Squad', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=400&h=250&fit=crop', tech: ['Unity', 'C#'] },
+      { id: 4, title: 'Smart Attendance', desc: 'Sistem presensi otomatis menggunakan facial recognition', category: 'ai', author: 'AI Team', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop', tech: ['Python', 'OpenCV', 'TensorFlow'] },
+      { id: 5, title: 'School Marketplace', desc: 'Marketplace internal untuk jual beli barang bekas layak pakai', category: 'web', author: 'Dev Warriors', image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop', tech: ['Next.js', 'PostgreSQL'] },
+      { id: 6, title: 'Math Puzzle Quest', desc: 'Game puzzle matematika dengan level yang menantang', category: 'game', author: 'Pixel Makers', image: 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=250&fit=crop', tech: ['Godot', 'GDScript'] },
+    ];
+
+    const team = [
+      { name: 'NEKO TAMA', role: 'Pembina & Web Mentor', image: 'https://i.pinimg.com/736x/36/fe/59/36fe5908477f06de11bb2294eb162dec.jpg', company: '10+ tahun di industri' },
+      { name: 'GREY JACK', role: 'Mobile Development', image: 'https://tse2.mm.bing.net/th/id/OIP.r8oBdhuBPQnmbJccqcnKrwHaEK?w=332&h=186&c=7&r=0&o=5&pid=1.7', company: 'Ex-Gojek' },
+      { name: 'BLACK JACK', role: 'AI & Machine Learning', image: 'https://tse1.mm.bing.net/th/id/OIP.0s1iYTjyecPlUWvJfC5quQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3', company: 'Ex-Tokopedia AI' },
+      { name: 'WHITE JACK', role: 'Game Development', image: 'https://i.ytimg.com/vi/QwIVN4vyk60/hqdefault.jpg', company: 'Game Studio Lead' },
+    ];
+
+    function renderProjects(filter = 'all') {
+      const grid = document.getElementById('projectsGrid');
+      const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+      
+      grid.innerHTML = filtered.map((project, index) => `
+        <div class="reveal reveal-delay-${index % 3 + 1} bg-[#16161f] rounded-2xl overflow-hidden border border-[#2a2a3a] card-hover group" data-category="${project.category}">
+          <div class="relative overflow-hidden">
+            <img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#16161f] to-transparent opacity-60"></div>
+            <span class="absolute top-3 right-3 px-2 py-1 bg-[#0a0a0f]/80 rounded text-xs font-mono text-[#00d4aa]">${project.category.toUpperCase()}</span>
+          </div>
+          <div class="p-5">
+            <h3 class="font-semibold mb-2">${project.title}</h3>
+            <p class="text-sm text-[#6b6b7b] mb-4">${project.desc}</p>
+            <div class="flex flex-wrap gap-2 mb-4">
+              ${project.tech.map(t => `<span class="px-2 py-1 bg-[#0a0a0f] rounded text-xs text-[#a0a0b0]">${t}</span>`).join('')}
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-[#2a2a3a]">
+              <span class="text-sm text-[#6b6b7b]">${project.author}</span>
+              <a href="#" class="text-[#00d4aa] text-sm hover:underline flex items-center gap-1">
+                Detail <i data-lucide="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+      
+      lucide.createIcons();
+      observeElements();
+    }
+
+    function renderTeam() {
+      const grid = document.getElementById('teamGrid');
+      grid.innerHTML = team.map((member, index) => `
+        <div class="reveal reveal-delay-${index + 1} bg-[#16161f] rounded-2xl p-6 border border-[#2a2a3a] card-hover text-center">
+          <img src="${member.image}" alt="${member.name}" class="w-20 h-20 rounded-xl object-cover mx-auto mb-4">
+          <h3 class="font-semibold">${member.name}</h3>
+          <p class="text-sm text-[#00d4aa] mt-1">${member.role}</p>
+          <p class="text-xs text-[#6b6b7b] mt-2">${member.company}</p>
+          <div class="flex justify-center gap-2 mt-4">
+            <a href="#" class="w-8 h-8 rounded-lg bg-[#0a0a0f] flex items-center justify-center hover:bg-[#00d4aa]/10 transition-colors" aria-label="LinkedIn">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-lg bg-[#0a0a0f] flex items-center justify-center hover:bg-[#00d4aa]/10 transition-colors" aria-label="GitHub">
+              <i data-lucide="github" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+      `).join('');
+      
+      lucide.createIcons();
+    }
+
+    function createCodeRain() {
+      const container = document.getElementById('codeRain');
+      const codes = ['{}', '[]', '()', '=>', 'if', 'else', 'for', 'while', 'func', 'class', 'import', 'export', 'const', 'let', 'var', 'async', 'await', 'return', '//', '/*', '*/', '0x', 'npm', 'git', '<>', '</>', '++', '--', '===', '!=='];
+      
+      for (let i = 0; i < 20; i++) {
+        const column = document.createElement('div');
+        column.className = 'code-column';
+        column.style.left = `${Math.random() * 100}%`;
+        column.style.animationDuration = `${15 + Math.random() * 20}s`;
+        column.style.animationDelay = `${Math.random() * 10}s`;
+        
+        let text = '';
+        for (let j = 0; j < 20; j++) {
+          text += codes[Math.floor(Math.random() * codes.length)] + ' ';
+        }
+        column.textContent = text;
+        container.appendChild(column);
+      }
+    }
+
+    function typeCode() {
+      const codeLines = [
+        '<span class="code-comment"># Selamat datang di EKSTRAKULIKULER CODING SRMA 24 KEDIRI!</span>',
+        '<span class="code-keyword">class</span> <span class="code-function">Student</span>:',
+        '    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(self, name, passion):',
+        '        self.name = <span class="code-variable">name</span>',
+        '        self.passion = <span class="code-variable">passion</span>',
+        '        self.skills = []',
+        '',
+        '    <span class="code-keyword">def</span> <span class="code-function">learn</span>(self, skill):',
+        '        self.skills.append(skill)',
+        '        <span class="code-keyword">return</span> <span class="code-string">f"Siswa {self.name} belajar {skill}!"</span>',
+        '',
+        '<span class="code-comment"># Mari mulai perjalananmu</span>',
+        'siswa = Student(<span class="code-string">"Kamu"</span>, <span class="code-string">"Coding"</span>)',
+        'siswa.learn(<span class="code-string">"Web Development"</span>)',
+        'siswa.learn(<span class="code-string">"Problem Solving"</span>)',
+        '<span class="code-keyword">print</span>(<span class="code-string">"Selamat bergabung!"</span>)',
+      ];
+      
+      const container = document.getElementById('typingCode');
+      let lineIndex = 0;
+      
+      function addLine() {
+        if (lineIndex < codeLines.length) {
+          const line = document.createElement('div');
+          line.innerHTML = `<span class="line-number">${String(lineIndex + 1).padStart(2, '0')}</span>${codeLines[lineIndex]}`;
+          container.appendChild(line);
+          lineIndex++;
+          setTimeout(addLine, 150);
+        } else {
+          const cursor = document.createElement('span');
+          cursor.className = 'typing-cursor';
+          container.lastChild.appendChild(cursor);
+        }
+      }
+      
+      setTimeout(addLine, 500);
+    }
+
+    function animateStats() {
+      const stats = document.querySelectorAll('.stat-number');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const target = parseInt(entry.target.dataset.target);
+            let current = 0;
+            const increment = target / 50;
+            
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                entry.target.textContent = target + '+';
+                clearInterval(timer);
+              } else {
+                entry.target.textContent = Math.floor(current);
+              }
+            }, 30);
+            
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      stats.forEach(stat => observer.observe(stat));
+    }
+
+    function observeElements() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        
+        btn.classList.add('active');
+        document.getElementById(`tab-${btn.dataset.tab}`).classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProjects(btn.dataset.filter);
+      });
+    });
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    document.getElementById('joinForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Terima kasih telah mendaftar! Kami akan menghubungi Anda melalui email.');
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      createCodeRain();
+      typeCode();
+      renderProjects();
+      renderTeam();
+      animateStats();
+      observeElements();
+    });
+  </script>
+</body>
+</html>
